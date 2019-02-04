@@ -1,0 +1,123 @@
+animal_list = []
+
+class Pets:
+    type = ' '
+    name =' '
+    voice = ' '
+    wight = 0 # kg
+    food_available = 'нужно больше корма'
+
+    def __init__(self, name, wight):
+        self.name = name
+        self.wight = wight
+        return animal_list.append([self.name, self.wight])
+
+    def feed_food(self):
+        if self.food_available == 'нужно больше корма':
+            print(self.name, 'животное накормлено')
+            self.food_available = 'у этого животного достаточно корма'
+        else:
+            print('у животного достаточно корма')
+
+class Eggs_pets(Pets):
+    eggs_available = 'требуется сбор яиц'
+    def picking_eggs(self):
+        if self.eggs_available == 'требуется сбор яиц':
+            print(self.name,'яйцо собрано')
+            self.eggs_available = 'яйцо собрано'
+        else:
+            print('яиц не найдено!')
+
+class Goose(Eggs_pets):
+    type = 'гусь'
+    voice = 'Га-Га-Га'
+
+class Chicken(Eggs_pets):
+    type = 'курица'
+    voice = 'Ко-Ко-Ко'
+
+class Duck(Eggs_pets):
+    type = 'утка'
+    voice = 'Кря-Кря-Кря'
+
+class Milk_pets(Pets):
+    milk_available = 'животное не доили'
+
+    def milk(self):
+        if self.milk_available == 'животное не доили':
+            print(self.name, 'Дойка прошла успешно')
+            self.milk_available = 'животное уже доили'
+        else:
+            print('молока еще нет!')
+
+class Cow(Milk_pets):
+    type = 'корова'
+    voice = 'Муууу'
+class Goat(Milk_pets):
+    type = 'коза'
+    voice = 'Меее'
+
+class Sheep(Pets):
+    type = 'овца'
+    voice = 'Беее'
+    wool_available = 'пора стричь'
+    def wool_cut(self):
+        if self.wool_available == 'пора стричь':
+            print(self.name, 'стрижка прошла успешно')
+            self.wool_available = 'животное пока не нуждается в стрижке'
+        else:
+            print('животное пока не нуждается в стрижке')
+
+goose_0 = Goose('Серый', 15)
+goose_1 = Goose('Белый', 12)
+cow_0 = Cow('Манька', 300)
+sheep_0 = Sheep('Барашек', 70)
+sheep_1 = Sheep('Кудрявый', 50)
+chicken_0 = Chicken('Ко-Ко', 6)
+chicken_1 = Chicken('Курареку', 8)
+goat_0 = Goat('Рога', 23)
+goat_1 = Goat('Копыта', 27)
+duck_0 = Duck('Кряква', 11)
+
+
+print(chicken_0.type, chicken_0.voice)
+print(cow_0.type, cow_0.voice)
+print(duck_0.type, duck_0.voice)
+print(goat_0.type, goat_0.voice)
+print(sheep_0.type, sheep_0.voice)
+print(goose_0.type, goose_0.voice)
+
+print(goose_1.name, goose_0.food_available)
+goose_1.feed_food()
+print(goose_1.name, goose_1.food_available)
+print()
+
+print(duck_0.name,duck_0.eggs_available)
+duck_0.picking_eggs()
+print(duck_0.name,duck_0.eggs_available)
+print()
+
+print(sheep_1.name,sheep_1.wool_available)
+sheep_1.wool_cut()
+print(sheep_1.name,sheep_1.wool_available)
+print()
+
+print(animal_list)
+
+all_animal_wight = 0
+for x in animal_list:
+    all_animal_wight += int(x[1])
+print()
+print ('Общий вес всех животных составляет: ',all_animal_wight, 'кг')
+
+
+max_animal_wight = 0
+name_max_animal_wight = " "
+for x in animal_list:
+    if int(x[1])> max_animal_wight:
+       max_animal_wight = x[1]
+       name_max_animal_wight = x[0]
+    elif int(x[1]) == max_animal_wight:
+        print ('Несколько животных имеют максимальный вес')
+
+print ('Самое тяжелое животное - ', name_max_animal_wight)
